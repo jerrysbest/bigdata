@@ -11,6 +11,7 @@ https://www.aboutyun.com/forum.php?mod=viewthread&tid=21404&extra=page%3D1
 [qanda]
 yarn原理/作用::
 一个container对应一个JVM进程（也就是一个executor）
+
 Spark On YARN内存分配
 
 image::https://gitee.com/Jerrysbest/bigdata/raw/main/memory.png[]
