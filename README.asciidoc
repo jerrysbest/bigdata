@@ -10,7 +10,7 @@ yarn原理/作用
 一个container对应一个JVM进程（也就是一个executor）
 Spark On YARN内存分配
 
-image::memory.png[]
+image::https://github.com/jerrysbest/bigdata/raw/main/memory.png[]
 
 堆外内存：由spark.yarn.executor.memoryOverhead参数设置。  主要用于JVM自身的开销。默认：MAX(executorMemory*0.10,384MB)
 Excutor内存
@@ -269,7 +269,7 @@ https://blog.csdn.net/wwwzydcom/article/details/108966222
 
 == *15. 实时数仓场景-大屏指标*
 
-image::monitor.png[]
+image::https://github.com/jerrysbest/bigdata/raw/main/monitor.png[]
 
 == *16.时序数据库*
 https://www.cnblogs.com/dhcn/p/12974931.html
