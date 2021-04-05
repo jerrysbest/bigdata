@@ -130,50 +130,57 @@ broker数量：根据需要存储的数据量
 
 == *10.大数据实际应用*
 
-flink spark算子的共用
-异步函数和缓存
-flink遇到问题的解决，slot卡死
+flink spark算子的共用 +
+异步函数和缓存 +
+flink遇到问题的解决，slot卡死 +
 spark问题解决 性能，任务提交create table if not exists   select，第一个am没有响应，所以建立第二个am
+
 数据采集
+
 https://tech.youzan.com/datax-in-action/
+
 druid使用
 https://tech.youzan.com/realtime-olap-on-druid/
-数据中台经常挂掉，
+
+数据中台经常挂掉， +
 ERROR JDBC exception: org.apache.thrift.transport.TTransportException: java.net.SocketTimeoutException: Read timed out
 java.sql.SQLException: org.apache.hive.service.cli.HiveSQLException: Error while processing statement: FAILED: Execution Error, return code 1 from org.apache.hadoop.hive.ql.exec.tez.TezTask
 
-百亿数据上传部分错误，如何删除部分重传
-分区+insert overwrite
-如何快速加载 10万个数据文件（命名有规律，数据格式一致）
+百亿数据上传部分错误，如何删除部分重传 +
+分区+insert overwrite +
+如何快速加载 10万个数据文件（命名有规律，数据格式一致） +
 建立外表，location指定相应位置，把文件移动到相应位置，分区表要添加相应分区
 加载慢的话：合理分区，小文件合并
-hive 单值分区，范围分区
-hive 多级分区 多分区字段，目录嵌套
-spark程序慢，如何排查？
-执行计划
-cpu 内存
-尝试增加并行度，cpu，内存
-spark杀掉
-调度平台可以，但是无法监控spark运行状态
-linux yarn application -kill <applicationId>
-YarnClient API ：yarnClient.killApplication(getAppId(appIdStr));
-如何etl去重，
-批量sql：建立一张和目标表完全一样的表，把数据导入到这个表，用join得出非重复数据导入
-流式处理（es ,ecache做缓存）
-范式建模（数据库设计三范式），维度建模（事实表，维度表，星型模型），实体建模（根据应用建模）区别
-https://blog.csdn.net/baidu_20183817/article/details/104991764
-阿里onedata体系细节，指标细节
-onemodel，oneservice，oneId
-智能监管系统指标：违规检出率，违规金额等
+hive 单值分区，范围分区 +
+hive 多级分区 多分区字段，目录嵌套 +
+spark程序慢，如何排查？ +
+执行计划 +
+cpu 内存 +
+尝试增加并行度，cpu，内存 +
+spark杀掉 +
+调度平台可以，但是无法监控spark运行状态 +
+linux yarn application -kill <applicationId> +
+YarnClient API ：yarnClient.killApplication(getAppId(appIdStr)); +
+如何etl去重， +
+批量sql：建立一张和目标表完全一样的表，把数据导入到这个表，用join得出非重复数据导入 +
+流式处理（es ,ecache做缓存） +
+范式建模（数据库设计三范式），维度建模（事实表，维度表，星型模型），实体建模（根据应用建模）区别 +
+https://blog.csdn.net/baidu_20183817/article/details/104991764 +
+阿里onedata体系细节，指标细节 +
+onemodel，oneservice，oneId +
+智能监管系统指标：违规检出率，违规金额等 +
 
-yarn资源调度
-公平调度
-https://blog.csdn.net/baiyangfu_love/article/details/14004331?utm_medium=distribute.pc_relevant.none-task-blog-OPENSEARCH-1.control&dist_request_id=fcbc0606-5cf5-46d5-a79b-5ad7b8898604&depth_1-utm_source=distribute.pc_relevant.none-task-blog-OPENSEARCH-1.control
-fairScheduler详解
-https://blog.csdn.net/sinat_29581293/article/details/58143159
-实例
-https://blog.csdn.net/T1DMzks/article/details/79211134
+yarn资源调度 +
+公平调度 +
+https://blog.csdn.net/baiyangfu_love/article/details/14004331?utm_medium=distribute.pc_relevant.none-task-blog-OPENSEARCH-1.control&dist_request_id=fcbc0606-5cf5-46d5-a79b-5ad7b8898604&depth_1-utm_source=distribute.pc_relevant.none-task-blog-OPENSEARCH-1.control +
 
+fairScheduler详解 +
+https://blog.csdn.net/sinat_29581293/article/details/58143159 +
+
+实例 +
+https://blog.csdn.net/T1DMzks/article/details/79211134 +
+
+----
 <?xml version="1.0"?>
 <allocations>
 <queue name="root">
@@ -235,36 +242,38 @@ https://blog.csdn.net/T1DMzks/article/details/79211134
         <rule name="default" queue="default"/>
     </queuePlacementPolicy>
 </allocations>
+----
 
-大数据平台比较-CDH，HDP
+大数据平台比较-CDH，HDP +
 http://www.mamicode.com/info-detail-2375058.html
 
 == *11.大数据集群调优*
-hadoop集群调优
-硬件；操作系统；平台参数；应用；
-https://blog.csdn.net/pansaky/article/details/83347357
-京东大规模集群
-https://www.yisu.com/zixun/283286.html
-通过Router层路由到指定的大数据集群，使得集团内各个大数据集群数据资源可以共享
-hadoop大集群优化配置，datanode节点数量为100，namenode1g对应一个datanode节点
-https://blog.csdn.net/maijiyouzou/article/details/23740225
-扩容
-https://www.aboutyun.com/blog-24-650.html
-decommission，格式化磁盘，再加回来
-磁盘不要用lvm，要用物理卷
+hadoop集群调优 +
+硬件；操作系统；平台参数；应用； +
+https://blog.csdn.net/pansaky/article/details/83347357 +
+京东大规模集群 +
+https://www.yisu.com/zixun/283286.html +
+通过Router层路由到指定的大数据集群，使得集团内各个大数据集群数据资源可以共享 +
+hadoop大集群优化配置，datanode节点数量为100，namenode1g对应一个datanode节点 +
+https://blog.csdn.net/maijiyouzou/article/details/23740225 +
+扩容 +
+https://www.aboutyun.com/blog-24-650.html +
+decommission，格式化磁盘，再加回来 +
+磁盘不要用lvm，要用物理卷 +
 
 == *12.大数据平台安装*
-hdp的安装
+hdp的安装 +
 https://docs.cloudera.com/HDPDocuments/HDP3/HDP-3.1.5/installation.html
 
 == *13.什么是数据中台*
+
 https://segmentfault.com/a/1190000020342503?utm_source=tag-newest
-狭意：从数据分层/治理和大数据平台两个维度
+狭意：从数据分层/治理和大数据平台两个维度 +
 广义：ipaas数据资产 daas数据中台 ipaas数据研发平台 iaas数据存储平台
 
 == *14，kudu*
 
-kudu是一个介于hdfs和olap数据库之间的方案，它平衡了随机读写和批量分析的性能，希望达到简化大数据平台架构，节约数据存储空间/减少数据存储份数的目的
+kudu是一个介于hdfs和olap数据库之间的方案，它平衡了随机读写和批量分析的性能，希望达到简化大数据平台架构，节约数据存储空间/减少数据存储份数的目的 +
 https://blog.csdn.net/wwwzydcom/article/details/108966222
 
 == *15. 实时数仓场景-大屏指标*
@@ -275,18 +284,18 @@ image::https://gitee.com/Jerrysbest/bigdata/raw/main/monitor.png[]
 https://www.cnblogs.com/dhcn/p/12974931.html
 
 == *17.scrum研发流程*
-1）角色 产品负责人（Product Owner）流程管理员（Scrum Master）开发团队（Scrum Team）
-2）计划，集成，story，Srpint Review Meeting（演示会议），Sprint Retrospective Meeting（回顾会议）
-3）在开发团队进行评估时，建议摒弃传统的“人天”评估法，采用故事点的方式，用斐波那契数列的数字（1，2，3，5，8，13，21……）的形式去评估
-4）版本管理：源码，sql升级脚本
-5）灰度发布
-1. 精确的流量分发控制：新功能小范围试用
-2. 监控系统的支撑：帮助决策，发现问题
-3.灵活的发布系统：局部发布，新旧版本共存
-6）项目化与敏捷开发的冲突
-不能违背项目计划
-对外的瀑布模型与对内的敏捷
-sprint 可以不严格按照2周来走，根据项目开发量来订sprint
+. 角色 产品负责人（Product Owner）流程管理员（Scrum Master）开发团队（Scrum Team）
+. 计划，集成，story，Srpint Review Meeting（演示会议），Sprint Retrospective Meeting（回顾会议）
+. 在开发团队进行评估时，建议摒弃传统的“人天”评估法，采用故事点的方式，用斐波那契数列的数字（1，2，3，5，8，13，21……）的形式去评估
+. 版本管理：源码，sql升级脚本
+. 灰度发布
+.. 精确的流量分发控制：新功能小范围试用
+.. 监控系统的支撑：帮助决策，发现问题
+.. 灵活的发布系统：局部发布，新旧版本共存
+. 项目化与敏捷开发的冲突
+. 不能违背项目计划
+. 对外的瀑布模型与对内的敏捷
+. sprint 可以不严格按照2周来走，根据项目开发量来订sprint
 
 == *18 面试题*
 https://zhuanlan.zhihu.com/p/161772729
