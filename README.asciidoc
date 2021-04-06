@@ -1,7 +1,7 @@
 = bigdata
 == *1.hadoop*
 
-== *HDFS体系架构*
+== *1. HDFS体系架构*
 [qanda]
 yarn的设计思路是什么?::
 
