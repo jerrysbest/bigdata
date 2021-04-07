@@ -19,11 +19,12 @@ Spark On YARN内存分配
 image::https://gitee.com/Jerrysbest/bigdata/raw/main/memory.png[]
 
 堆外内存::
-由spark.yarn.executor.memoryOverhead参数设置。  主要用于JVM自身的开销。默认：MAX(executorMemory*0.10,384MB)
+由spark.yarn.executor.memoryOverhead参数设置。主要用于JVM自身的开销。默认：MAX(executorMemory*0.10,384MB)
 Excutor内存::
 * 由spark.executor.memory参数设置，分为两部分。
 .. Execution:shuffle、排序、聚合等用于计算的内存
 .. Storage：用于集群中缓冲和传播内部数据的内存（cache、广播变量）
+* 堆外内存，利用 JDK Unsafe API（从 Spark 2.0 开始，在管理堆外的存储内存时不再基于 Tachyon，而是与堆外的执行内存一样，基于 JDK Unsafe API 实现[3]），Spark 可以直接操作系统堆外内存，减少了不必要的内存开销，以及频繁的 GC 扫描和回收，提升了处理性能。堆外内存可以被精确地申请和释放，而且序列化的数据占用的空间可以被精确计算，所以相比堆内内存来说降低了管理的难度，也降低了误差。
 规整化因子::
 设置的executor-memory 大小为6g，executorMemoryOverhead为默认值，即max(6g*0.1,384MB)=612MB
 那总得大小应该为6144MB+612MB=6756MB
