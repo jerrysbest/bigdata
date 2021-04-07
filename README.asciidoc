@@ -1,7 +1,8 @@
 = bigdata
+
 == *1.hadoop*
 
-== *1. HDFS体系架构*
+=== *1.1 HDFS体系架构*
 [qanda]
 yarn的设计思路是什么?::
 
@@ -44,7 +45,13 @@ https://blog.csdn.net/hellojoy/article/details/81079598 +
 你所理解的Spark的shuffle过程？::
 Spark源码解读之Shuffle原理剖析与源码分析 +
 https://blog.csdn.net/qq_37142346/article/details/81875249
-3.2 spark on hive如何动态解决小文件过多的问题？::
+spark rdd 分区数的确定::
+https://blog.csdn.net/dkl12/article/details/81663018 +
+总结，不同数据源分区数量计算公式不同，同一数据源文件大小不同计算公式也不同 +
+blocks-merge-inputsplit-task-rddpartion
+参数有: blcok数量，block大小，默认并行度，cpu核心数等等
+
+3.2 spark on hive如何动态解决小文件过多的问题？ +
 https://blog.csdn.net/longyangaaoo/article/details/78645839 +
 #在Map-only的任务结束时合并小文件 +
 set hive.merge.mapfiles = true +
