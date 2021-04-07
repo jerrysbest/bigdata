@@ -48,8 +48,8 @@ https://blog.csdn.net/qq_37142346/article/details/81875249
 spark rdd 分区数的确定::
 https://blog.csdn.net/dkl12/article/details/81663018 +
 总结，不同数据源分区数量计算公式不同，同一数据源文件大小不同计算公式也不同 +
+参数有: blcok数量，block大小，默认并行度，cpu核心数等等 +
 blocks-merge-inputsplit-task-rddpartion
-参数有: blcok数量，block大小，默认并行度，cpu核心数等等
 
 3.2 spark on hive如何动态解决小文件过多的问题？ +
 https://blog.csdn.net/longyangaaoo/article/details/78645839 +
@@ -77,8 +77,8 @@ https://blog.csdn.net/u013411339/article/details/103107349?utm_medium=distribute
 broadcast hash join +
 shuffle hash join +
 sorted merge join +
-3.5 spark checkpoint +
-时机，rdd运行完以后 +
+3.5 spark checkpoint 时机 +
+rdd生成完以后 +
 checkpoint本身是个rdd，持久化到hdfs
 
 == *4.hbase*
@@ -91,9 +91,9 @@ hfile为何要去合并 +
 lsm树的优势 +
 
 == *5.Apache Calcite*
-  Apache Calcite是一款开源SQL解析工具, 可以将各种SQL语句解析成抽象语法术AST(Abstract Syntax Tree), 之后通过操作AST就可以把SQL中所要表达的算法与关系体现在具体代码之中。+
-  calcite的原理 +
-  calcite如何做到sql语句转换为物理执行计划 +
+Apache Calcite是一款开源SQL解析工具, 可以将各种SQL语句解析成抽象语法术AST(Abstract Syntax Tree), 之后通过操作AST就可以把SQL中所要表达的算法与关系体现在具体代码之中。+
+calcite的原理 +
+calcite如何做到sql语句转换为物理执行计划 +
 
 == *6.b和b+树对比 innodb为何用b+树*
 
