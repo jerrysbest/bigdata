@@ -83,13 +83,52 @@ rdd生成完以后 +
 checkpoint本身是个rdd，持久化到hdfs
 
 == *4.hbase*
-hbase读取和写入的过程 +
-lsm相对于b+树优化了哪块？ 优化了写入 +
-lsm 设计内存部分的目的是什么 +
-主要是用来维护结构 而不是为了加速读取 加速读取有专门的缓存 +
-hfile为何要去合并 +
-如何做到region的热拆分 +
-lsm树的优势 +
+. hbase读取和写入的过程
+. lsm相对于b+树优化了哪块？ 优化了写入
+. lsm 设计内存部分的目的是什么
+.. 主要是用来维护结构 而不是为了加速读取 加速读取有专门的缓存
+. region
+.. 层级关系
+ * Table       (HBase table)
+ ** Region       (Regions for the table)
+ *** Store          (Store per ColumnFamily for each Region for the table)
+ **** MemStore        (MemStore for each Store for each Region for the table)
+ ***** StoreFile       (StoreFiles for each Store for each Region for the table)
+ ****** Block     (Blocks within a StoreFile within a Store for each Region for the table)
+
+.. Region 大小
+... 考虑节点数量,总数据量大小,确定合适的region数量，使得资源可以被利用上
+... region数量少了，资源利用不上，region数量太多性能差
+... 设置region体积最大值，要考虑cell的大小来设置region体积
+.. Region 拆分策略
+... Region的分割操作是不可见的，因为Master不会参与其中。RegionServer拆分region的步骤是，先将该region下线，然后拆分，将其子region加入到META元信息中，再将他们加入到原本的RegionServer中，最后汇报Master。
+... 执行split的线程是CompactSplitThread。
+... 自定义拆分策略
+.... RegionSplitPolicy的实现类
+.... ConstantSizeRegionSplitPolicy
+.... IncreasingToUpperBoundRegionSplitPolicy
+.... DelimitedKeyPrefixRegionSplitPolicy
+.... KeyPrefixRegionSplitPolicy
+... 预拆分 -导入数据时冷拆分
+... 自动拆分 -热拆分
+... 手动拆分（命令行） -热拆分
+. hfile为何要去合并
+.. 小文件太多影响效率
+.. 有些带删除标记的文件需要删除
+.. 合并流程
+... 获取不带锁的列表
+... 由列表创建一个StoreFileScanner来读本次合并的所有storeFile上的数据
+... 在临时目录创建一个新的HFile，使用scanner从旧的HFile中读取数据放到新HFile
+... 用临时目录的HFile替换原来的HFile，这样没被读出数据就被清掉了
+. lsm树的优势
+. hbase列族
+.. 需要一起查询的字段放到一个列族
+... HBase目前对于两列族或三列族以上的任何项目都不太合适，因此请将模式中的列族数量保持在较低水平。目前，flushing 和 compactions 是按照每个区域进行的，所以如果一个列族承载大量数据带来的 flushing，即使所携带的数据量很小，也会 flushing 相邻的列族。当许多列族存在时，flushing 和 compactions 相互作用可能会导致一堆不必要的 I/O（要通过更改 flushing 和 compactions 来针对每个列族进行处理）。
+.. 数量不要多
+... 一般就2到3个
+.. 列族基数
+... 如果有两个列族A和B,A有100万行，B有10亿行
+
 
 == *5.Apache Calcite*
 Apache Calcite是一款开源SQL解析工具, 可以将各种SQL语句解析成抽象语法术AST(Abstract Syntax Tree), 之后通过操作AST就可以把SQL中所要表达的算法与关系体现在具体代码之中。+
