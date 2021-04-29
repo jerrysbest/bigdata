@@ -303,7 +303,9 @@ https://blog.csdn.net/T1DMzks/article/details/79211134 +
 大数据平台比较-CDH，HDP +
 http://www.mamicode.com/info-detail-2375058.html +
 HDP安装 +
+https://www.cnblogs.com/shook/p/12409759.html +
 https://blog.csdn.net/jiajane/article/details/103952426 +
+https://www.cnblogs.com/barneywill/p/10264135.html +
 
 == *11.大数据集群调优*
 hadoop集群调优 +
