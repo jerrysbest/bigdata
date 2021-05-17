@@ -304,8 +304,8 @@ https://blog.csdn.net/T1DMzks/article/details/79211134 +
 http://www.mamicode.com/info-detail-2375058.html +
 HDP安装 +
 https://www.cnblogs.com/shook/p/12409759.html +
-https://blog.csdn.net/jiajane/article/details/103952426 +
-https://www.cnblogs.com/barneywill/p/10264135.html +
+HDP开发 +
+https://mp.weixin.qq.com/s?__biz=MzU3MTc1NzU0Mg==&mid=2247483719&idx=1&sn=56baf46a82dc33479e3e07431f495641&chksm=fcda07cecbad8ed804af64152245c1abf403992221336335575f519b6c4be2ddd83332755765&scene=21#wechat_redirect
 
 == *11.大数据集群调优*
 hadoop集群调优 +
