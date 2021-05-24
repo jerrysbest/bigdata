@@ -230,6 +230,10 @@ yarn资源调度 +
 公平调度 +
 https://blog.csdn.net/baiyangfu_love/article/details/14004331?utm_medium=distribute.pc_relevant.none-task-blog-OPENSEARCH-1.control&dist_request_id=fcbc0606-5cf5-46d5-a79b-5ad7b8898604&depth_1-utm_source=distribute.pc_relevant.none-task-blog-OPENSEARCH-1.control +
 
+yarn调优 +
+https://blog.csdn.net/sinat_37513998/article/details/83055029 +
+https://www.cnblogs.com/jmx-bigdata/p/13458103.html +
+
 fairScheduler详解 +
 https://blog.csdn.net/sinat_29581293/article/details/58143159 +
 
